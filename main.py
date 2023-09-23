@@ -10,6 +10,7 @@ time.sleep(3)
 
 
 # Starting with the log in system
+
 x = 0
 a = 0
 con = sql.connect("data.db")
@@ -58,7 +59,6 @@ What is  your choice?: '''))
                 continue
             else:
                 print("A user is already registered to this E-mail! Retry.")
-
 
 # Log in system finish
 
