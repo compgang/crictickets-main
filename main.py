@@ -7,6 +7,8 @@ import time
 time.sleep(1)
 print("Welcome to CricTickets, the best place to get your IPL tickets!")
 time.sleep(3)
+
+# Starting with the log in system
 x = 0
 a = 0
 con = sql.connect("data.db")
@@ -48,3 +50,6 @@ What is  your choice?: '''))
             x = 0
             a = 1
             continue
+
+# Log in system finish
+
