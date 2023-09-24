@@ -61,4 +61,3 @@ What is  your choice?: '''))
                 print("A user is already registered to this E-mail! Retry.")
 
 # Log in system finished
-
