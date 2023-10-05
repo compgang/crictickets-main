@@ -8,9 +8,6 @@ time.sleep(1)
 print("Welcome to CricTickets, the best place to get your IPL tickets!")
 time.sleep(3)
 
-print("Right till here.")
-time.sleep(5)
-
 
 # Starting with the log in system
 
@@ -61,5 +58,7 @@ What is  your choice?: '''))
                 continue
             else:
                 print("A user is already registered to this E-mail! Retry.")
+
+time.sleep(10)
 
 # Log in system finished
