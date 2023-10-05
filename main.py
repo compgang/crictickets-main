@@ -8,6 +8,8 @@ time.sleep(1)
 print("Welcome to CricTickets, the best place to get your IPL tickets!")
 time.sleep(3)
 
+print("Right till here.")
+time.sleep(5)
 
 
 # Starting with the log in system
