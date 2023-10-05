@@ -18,7 +18,6 @@ x = 0
 a = 0
 con = sql.connect("data.db")
 cur = con.cursor()
-cur.execute("CREATE TABLE IF NOT EXISTS users (email, username, password)")
 while x != 1 and x != 2:
     a = 0
     x = int(input('''1. Create a new account
