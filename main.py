@@ -4,10 +4,10 @@
 import sqlite3 as sql
 import time
 
-
 time.sleep(1)
 print("Welcome to CricTickets, the best place to get your IPL tickets!")
 time.sleep(3)
+
 
 
 # Starting with the log in system
