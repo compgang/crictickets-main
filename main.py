@@ -48,9 +48,9 @@ What is  your choice?: '''))
                 username = input("Enter your username: ")
                 password = pwinput.pwinput(prompt="Enter your password: ", mask='*')
                 password2 = pwinput.pwinput(prompt="Enter your password again: ", mask='*')
-            statement = f"SELECT email FROM users WHERE email = '{username}'"
+            statement = f"SELECT email FROM users WHERE email = '{email}'"
             cur.execute(statement)
-            if cur.fetchone:
+            if not cur.fetchone:
                 cur.execute("insert into users (email, username, password) values (?, ?, ?)",
                             (email, username, password))
                 con.commit()
