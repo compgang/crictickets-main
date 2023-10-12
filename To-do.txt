@@ -1,2 +1,4 @@
 1. Produce Dependencies file (check import corner)
 2. \n everywhere for aesthetics, maybe even a line of '#'
+3. You can install from a requirement file: pip install -r requirements.txt. You can also list all installed packages and put it in a requirement file: pip freeze > requirement.txt
+Steps for dependencies.
