@@ -1,9 +1,9 @@
 # Made with love by Arnav, Khushi, Shreya and Ashvath (we need the marks)
 # CricTickets™ is a trademarked name by Arnav & Co. (jk)
 
-import sqlite3 as sql
+import sqlite3 as sql   # Dependency 1
 import time
-import pwinput
+import pwinput  # Dependency 2
 
 time.sleep(1)
 print("Welcome to CricTickets, the best place to get your IPL tickets!")
