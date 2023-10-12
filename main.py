@@ -26,7 +26,7 @@ What is  your choice?: '''))
             username = input("Enter your username: ")
             password = pwinput.pwinput(prompt="Enter your password: ", mask='*')
 
-            statement = f"SELECT username from users WHERE username='{username}' AND Password = '{password}';"
+            statement = f"SELECT username from users WHERE username='{username}' AND Password = '{password}'"
             cur.execute(statement)
             if not cur.fetchone():  # An empty result evaluates to False.
                 print("Incorrect username or password! Check again.")
