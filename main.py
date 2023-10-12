@@ -3,6 +3,7 @@
 
 import sqlite3 as sql
 import time
+import pwinput
 
 time.sleep(1)
 print("Welcome to CricTickets, the best place to get your IPL tickets!")
@@ -23,7 +24,7 @@ What is  your choice?: '''))
     while a == 0:
         if x == 2:
             username = input("Enter your username: ")
-            password = input("Enter your password: ")
+            password = pwinput.pwinput(prompt="Enter your password: ", mask='*')
 
             statement = f"SELECT username from users WHERE username='{username}' AND Password = '{password}';"
             cur.execute(statement)
@@ -38,15 +39,15 @@ What is  your choice?: '''))
         elif x == 1:
             email = input("Enter your E-mail: ")
             username = input("Enter your username: ")
-            password = input("Enter your password: ")
-            password2 = input("Enter your password again: ")
+            password = pwinput.pwinput(prompt="Enter your password: ", mask='*')
+            password2 = pwinput.pwinput(prompt="Enter your password again: ", mask='*')
 
             while password != password2:
                 print("Both the passwords entered do not match! Try again.")
                 email = input("Enter your E-mail: ")
                 username = input("Enter your username: ")
-                password = input("Enter your password: ")
-                password2 = input("Enter your password again: ")
+                password = pwinput.pwinput(prompt="Enter your password: ", mask='*')
+                password2 = pwinput.pwinput(prompt="Enter your password again: ", mask='*')
             statement = f"SELECT email FROM users WHERE email = '{username}'"
             cur.execute(statement)
             if cur.fetchone:
