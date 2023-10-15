@@ -47,7 +47,7 @@ What is  your choice?: '''))
                 password2 = input("Enter your password again: ")
             statement = f"SELECT email FROM users WHERE email = '{email}' OR username = '{username}'"
             cur.execute(statement)
-            if not cur.fetchone:
+            if not cur.fetchone():
                 cur.execute("insert into users (email, username, password) values (?, ?, ?)",
                             (email, username, password))
                 con.commit()
