@@ -3,7 +3,7 @@
 
 import sqlite3 as sql   # Dependency 1
 import time
-
+import pwinput as mask
 time.sleep(1)
 print("Welcome to CricTickets, the best place to get your IPL tickets!")
 time.sleep(3)
@@ -22,10 +22,10 @@ What is  your choice?: '''))
     while a == 0:
         if x == 2:
             username = input("Enter your username: ")
-            password = input("Enter your password: ")
+            password = mask.pwinput(prompt="Enter your password: ", mask='*')
 
-            statement = f"SELECT username from users WHERE username='{username}' AND Password = '{password}'"
-            cur.execute(statement)
+            statement = f"SELECT username from users WHERE username = ? AND password = ?"
+            cur.execute(statement, (username, password))
             if not cur.fetchone():  # An empty result evaluates to False.
                 print("Incorrect username or password! Check again.")
                 continue
@@ -36,24 +36,23 @@ What is  your choice?: '''))
         elif x == 1:
             email = input("Enter your E-mail: ")
             username = input("Enter your username: ")
-            password = input("Enter your password: ")
-            password2 = input("Enter your password again: ")
+            password = mask.pwinput(prompt="Enter your password: ", mask='*')
+            password2 = mask.pwinput(prompt="Enter your password again: ", mask='*')
 
             while password != password2:
                 print("Both the passwords entered do not match! Try again.")
                 email = input("Enter your E-mail: ")
                 username = input("Enter your username: ")
-                password = input("Enter your password: ")
-                password2 = input("Enter your password again: ")
-            statement = f"SELECT email FROM users WHERE email = '{email}' OR username = '{username}'"
-            cur.execute(statement)
+                password = mask.pwinput(prompt="Enter your password: ", mask='*')
+                password2 = mask.pwinput(prompt="Enter your password again: ", mask='*')
+            statement = f"SELECT email FROM users WHERE email = ? and username = ?"
+            cur.execute(statement, (email, username))
             if not cur.fetchone():
                 cur.execute("insert into users (email, username, password) values (?, ?, ?)",
                             (email, username, password))
                 con.commit()
                 x = 0
                 a = 1
-                continue
             else:
                 print("A user is already registered to this E-mail! Retry.")
 
