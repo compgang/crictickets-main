@@ -40,12 +40,15 @@ What is  your choice?: '''))
                 x = 1
         elif x == 1:
             print("Here are some rules to follow while creating your new account: ")
-            print('''1. Your username must be atleast 5 characters, and must only include lowercase letters, numbers and underscores. No other character 
-is accepted. ''')
+            time.sleep(3)
+            print('''1. Your username must be at least 5 characters, and must only include lowercase letters, numbers 
+and underscores. No other character is accepted. ''')
+            time.sleep(5)
             print('''2. Your password must be at least 5 characters, and must not include any whitespaces. Also, please
 refrain from using simple passwords.''')
+            time.sleep(5)
             print("3. If you make a mistake in any of the above, you will be forced to retry from the email section.")
-            time.sleep(10)
+            time.sleep(3)
             create_loop = 0
             while create_loop == 0:
                 email = input("Enter your E-mail: ")
