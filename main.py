@@ -6,7 +6,8 @@ import sqlite3 as sql   # Dependency 1
 import time
 import pwinput as mask
 import re
-
+import random as ran
+import string
 
 time.sleep(1)
 print("Welcome to CricTickets, the best place to get your IPL tickets!")
@@ -38,32 +39,49 @@ What is  your choice?: '''))
                 a = 1
                 x = 1
         elif x == 1:
-            email = input("Enter your E-mail: ")
-            email_valid = bool(re.match(r"[^@]+@[^@]+\.[^@]+", email))
-
-            if email_valid:
+            print("Here are some rules to follow while creating your new account: ")
+            print('''1. Your username must be atleast 5 characters, and must only include lowercase letters, numbers and underscores. No other character 
+is accepted. ''')
+            print('''2. Your password must be at least 5 characters, and must not include any whitespaces. Also, please
+refrain from using simple passwords.''')
+            print("3. If you make a mistake in any of the above, you will be forced to retry from the email section.")
+            time.sleep(10)
+            create_loop = 0
+            while create_loop == 0:
+                email = input("Enter your E-mail: ")
+                email_valid = bool(re.match(r"[^@]+@[^@]+\.[^@]+", email))
                 username = input("Enter your username: ")
+                username_valid = bool(re.match(r"^[a-z0-9_]{5,}$", username))
                 password = mask.pwinput(prompt="Enter your password: ", mask='*')
+                password_valid = bool(re.match(r"^(?![\s\S]*\s)\S{5,}$", password))
                 password2 = mask.pwinput(prompt="Enter your password again: ", mask='*')
-                while password != password2:
-                    print("Both passwords do not match! Try again.")
-                    username = input("Enter your username: ")
-                    password = mask.pwinput(prompt="Enter your password: ", mask='*')
-                    password2 = mask.pwinput(prompt="Enter your password again: ", mask='*')
-
-                statement = f"SELECT email FROM users WHERE email = ? and username = ?"
-                cur.execute(statement, (email, username))
-                if not cur.fetchone():
-                    cur.execute("insert into users (email, username, password) values (?, ?, ?)",
-                            (email, username, password))
-                    con.commit()
-                    print("Account has been created! Please log in to your account now.")
-                    x = 0
-                    a = 1
+                if not email_valid:
+                    print("Email entered is invalid! Retry.")
+                elif not username_valid:
+                    print("Username is invalid! Retry.")
+                elif not password_valid:
+                    print("Password structure is invalid! Retry.")
+                elif not password == password2:
+                    print("Both passwords are not same! Retry.")
                 else:
-                    print("A user is already registered to this E-mail! Retry.")
-            else:
-                print("This is an invalid email! Retry.")
+                    statement = f"SELECT email FROM users WHERE email ='{email}'"
+                    cur.execute(statement)
+                    if not cur.fetchone():
+                        userID = ''.join(ran.choices(string.ascii_uppercase + string.digits, k=10))
+                        cur.execute(f"select userID from users where userID = '{userID}'")
+                        while cur.fetchone():
+                            userID = ''.join(ran.choices(string.ascii_uppercase + string.digits, k=10))
+                            userID = str(userID)
+                            cur.execute(f"select userID from users where userID = '{userID}'")
+                        cur.execute("insert into users (userID, email, username, password) values (?, ?, ?, ?)",
+                                    (userID, email, username, password))
+                        con.commit()
+                        print("Account has been created! Please log in to your account now.")
+                        x = 0
+                        a = 1
+                        create_loop = 1
+                    else:
+                        print("User with this email already exists! Retry.")
 time.sleep(10)
 
 # Log in system finished
