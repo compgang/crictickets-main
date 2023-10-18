@@ -1,0 +1,44 @@
+Computer Project:
+
+menu:
+
+select your city:
+ ex.
+ blr del mumbai
+ chennai kolkata
+
+top/ upcoming shows in your city:
+ in a range of a week from date of browsing
+	
+options
+ 1.csk vs rcb
+ 2.mi vs rr....
+
+
+lets say they pick one:
+	price range
+	description
+	timings 
+	location
+	book tickets(option)
+	ads displaying disocunts available for specific accessories/food/tansport/banks chosen/type of seat (gui for 12th)
+if selected:
+	which ticket with prices mentioned
+		for x ticket chosen:
+			seat selection through image of respective stadium
+			number of tickets
+		
+	accessories
+	food and drinks
+	transport (possibly if we are jobless)
+	chekout
+	payment method: 
+		upi
+		card
+		
+	invoice
+	thank you for using our survices please dont come back again.
+
+
+	
+		
