@@ -29,6 +29,16 @@ transport bool
 )
 ''')
 cur.execute(statement)
+cur.execute("drop table matches")
+cur.execute(f'''create table matches
+(
+matchID char,
+Team1 char,
+Team2 char, 
+location char, 
+date char
+)
+''')
 
 time.sleep(2)
 print("data.db has been cleared. have a great day!")
