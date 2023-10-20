@@ -23,8 +23,8 @@ statement = (f'''create table orders
 userID char primary key, 
 email char,
 matchID int,
-seatnum char,
-foodndrinks bool,
+seat_num char,
+food_n_drinks bool,
 transport bool
 )
 ''')
@@ -36,7 +36,8 @@ matchID char,
 Team1 char,
 Team2 char, 
 location char, 
-date char
+date char,
+stadium char
 )
 ''')
 

@@ -15,13 +15,13 @@ options
  2.mi vs rr....
 
 
-lets say they pick one:
+let's say they pick one:
 	price range
 	description
 	timings 
 	location
 	book tickets(option)
-	ads displaying disocunts available for specific accessories/food/tansport/banks chosen/type of seat (gui for 12th)
+	ads displaying discounts available for specific accessories/food/transport/banks chosen/type of seat (gui for 12th)
 if selected:
 	which ticket with prices mentioned
 		for x ticket chosen:
@@ -31,13 +31,13 @@ if selected:
 	accessories
 	food and drinks
 	transport (possibly if we are jobless)
-	chekout
+	checkout
 	payment method: 
 		upi
 		card
 		
 	invoice
-	thank you for using our survices please dont come back again.
+	thank you for using our services please don't come back again.
 
 
 	

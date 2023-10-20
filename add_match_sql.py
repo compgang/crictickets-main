@@ -16,12 +16,13 @@ if x == 1:
     if not cur.fetchone():
         location1 = input("Enter location: ")
         date = input("Enter date: ")
+        stadium = input("Enter stadium: ")
         matchID = ''.join(ran.choices(string.digits, k=6))
         cur.execute(f"select matchID from matches where matchID = '{matchID}'")
         while cur.fetchone():
             matchID = ''.join(ran.choices(string.digits, k=6))
-        cur.execute("insert into matches (matchID, Team1, Team2, location, date) values (?, ?, ?, ?, ?)",
-                    (matchID, team1, team2, location1, date))
+        cur.execute("insert into matches (matchID, Team1, Team2, location, date, stadium) values (?, ?, ?, ?, ?, ?)",
+                    (matchID, team1, team2, location1, date, stadium))
         con.commit()
         print("Match has been created.")
     else:
