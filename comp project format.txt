@@ -39,6 +39,36 @@ if selected:
 	invoice
 	thank you for using our services please don't come back again.
 
+	list of functions
+
+
+1.Menu
+	city
+	config: teams, stadium, date/range of dates,
+	range of shows, options
+
+2.Description
+	display: description,price range, timings, location
+	option: book tickets:
+		discounts
+
+3.Seat booking
+	for terminal:
+		display: directions, floor, number of tickets
+4.Cart
+	Accessories
+	food and drinks
+	transport
+
+5.Checkout
+	Bill: Confirm
+	Payment Methods: UPI, Card (display format for payment method)
+
+6.Invoice
+	display
+
+
+
 
 	
 		

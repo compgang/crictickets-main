@@ -32,12 +32,15 @@ cur.execute(statement)
 cur.execute("drop table matches")
 cur.execute(f'''create table matches
 (
-matchID char,
+matchID int,
 Team1 char,
 Team2 char, 
 location char, 
-date char,
-stadium char
+date date,
+stadium char,
+desc char, 
+price_range char, 
+time1 time
 )
 ''')
 
