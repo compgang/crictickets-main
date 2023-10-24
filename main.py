@@ -1,11 +1,14 @@
 # Import Corner
 
 import sqlite3 as sql
-import time
-import pwinput as mask
-import re
 import random as ran
 import string
+import time
+import re
+import hashlib
+import os
+import binascii
+import pwinput  # Import the pwinput library
 
 # Initialize the database connection
 con = sql.connect("data.db")
@@ -14,7 +17,6 @@ cur = con.cursor()
 # Function Definition Corner
 
 # Function for Login system
-
 
 def login_screen_choice():
     time.sleep(1)
@@ -27,18 +29,19 @@ def login_screen_choice():
 What is your choice?: '''))
     return x
 
+# Initialize the database connection
+con = sql.connect("data.db")
+cur = con.cursor()
 
-# Function to create a new account
-
-
+# Function to create a new account with password hashing
 def create_account():
     print("Here are some rules to follow while creating your new account: ")
     time.sleep(3)
     print('''1. Your username must be at least 5 characters and must only include lowercase letters, numbers, 
-and underscores. No other character is accepted. ''')
+    and underscores. No other character is accepted. ''')
     time.sleep(5)
     print('''2. Your password must be at least 5 characters and must not include any whitespaces. Also, please
-refrain from using simple passwords.''')
+    refrain from using simple passwords.''')
     time.sleep(5)
 
     email = input("Enter your E-mail: ")
@@ -57,71 +60,73 @@ refrain from using simple passwords.''')
         username_valid = bool(re.match(r"^[a-z0-9_]{5,}$", username))
         continue
 
-    password = mask.pwinput(prompt="Enter your password: ", mask='*')
+    password = pwinput.pwinput(prompt="Enter your password: ")
     password_valid = bool(re.match(r"^(?![\s\S]*\s)\S{5,}$", password))
     while not password_valid:
         print("Password structure is invalid! Retry.")
-        password = mask.pwinput(prompt="Enter your password: ", mask='*')
+        password = pwinput.pwinput(prompt="Enter your password: ")
         password_valid = bool(re.match(r"^(?![\s\S]*\s)\S{5,}$", password))
         continue
 
-    password2 = mask.pwinput(prompt="Enter your password again: ", mask='*')
+    password2 = pwinput.pwinput(prompt="Enter your password again: ")
 
     while not password == password2:
         print("Both passwords are not the same! Retry.")
-        password = mask.pwinput(prompt="Enter your password: ", mask='*')
+        password = pwinput.pwinput(prompt="Enter your password: ")
         password_valid = bool(re.match(r"^(?![\s\S]*\s)\S{5,}$", password))
         while not password_valid:
             print("Password structure is invalid! Retry.")
-            password = mask.pwinput(prompt="Enter your password: ", mask='*')
+            password = pwinput.pwinput(prompt="Enter your password: ")
             password_valid = bool(re.match(r"^(?![\s\S]*\s)\S{5,}$", password))
             continue
-        password2 = mask.pwinput(prompt="Enter your password again: ", mask='*')
+        password2 = pwinput.pwinput(prompt="Enter your password again: ")
+
+    # Generate a random salt and hash the password with the salt
+    salt = os.urandom(16)
+    key = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
+    password_hash = binascii.hexlify(key + salt).decode('ascii')
 
     statement = f"SELECT email FROM users WHERE email = '{email}'"
     cur.execute(statement)
     if not cur.fetchone():
         userid = ''.join(ran.choices(string.ascii_uppercase + string.digits, k=10))
-        cur.execute(f"select userID from users where userID = '{userid}'")
+        cur.execute(f"SELECT userID FROM users WHERE userID = '{userid}'")
         while cur.fetchone():
             userid = ''.join(ran.choices(string.ascii_uppercase + string.digits, k=10))
-        cur.execute("insert into users (userID, email, username, password) values (?, ?, ?, ?)",
-                    (userid, email, username, password))
+        cur.execute("INSERT INTO users (userID, email, username, password_hash, salt) VALUES (?, ?, ?, ?, ?)",
+                    (userid, email, username, password_hash, salt))
         con.commit()
         print("Account has been created! Please log in to your account now.")
-        return
     else:
         print("User with this email already exists! Retry.")
 
-
-# Function to log into an account
-
+# Function to log into an account with password verification
 def log_in():
     username = input("Enter your username: ")
-    password = mask.pwinput(prompt="Enter your password: ", mask='*')
+    password = pwinput.pwinput(prompt="Enter your password: ")
 
-    statement = f"SELECT email from users where username = '{username}'"
-    cur.execute(statement)
-    if not cur.fetchone():
+    statement = f"SELECT email, password_hash, salt FROM users WHERE username = ?"
+    cur.execute(statement, (username,))
+    row = cur.fetchone()
+
+    if not row:
         print("There exists no account with this username! Check again.")
         return False
 
+    email, stored_password_hash, salt = row
+
+    key = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
+    password_hash = binascii.hexlify(key + salt).decode('ascii')
+
+    if password_hash == stored_password_hash:
+        print("You have successfully logged in! Welcome", username)
+        return True
     else:
-
-        statement = f"SELECT username from users WHERE username = ? AND password = ?"
-        cur.execute(statement, (username, password))
-        if not cur.fetchone():
-            print("Incorrect username or password! Check again.")
-            return False
-        else:
-            print("You have successfully logged in! Welcome", username)
-            return True
+        print("Incorrect username or password! Check again.")
+        return False
 
 
-# Function to sort matches by city
-
-
-# function to sort matches by date, team, stadium
+# Function to sort matches by city and function to sort matches by date, team
 
 
 # function for match description
@@ -176,6 +181,7 @@ if __name__ == "__main__":
 
     if answer == 1:
         create_account()
+        log_in()
     elif answer == 2:
         if log_in():
             # Perform actions after successful login here

@@ -11,7 +11,8 @@ cur.execute(f'''create table users
 userID char primary key,
 email char, 
 username char,
-password char
+password_hash char,
+salt char
 )
 ''')
 
