@@ -195,7 +195,5 @@ if __name__ == "__main__":
 
     time.sleep(2)
 
-userid1 = ''.join(ran.choices(string.ascii_uppercase, k=4))
-userid2 = ''.join(ran.choices(string.digits, k=10))
-userid3 = str(userid1) + str(userid2)
+
 
