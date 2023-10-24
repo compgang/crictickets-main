@@ -22,6 +22,7 @@ cur.execute(f"drop table orders")
 cur.execute(f'''create table orders
 (
 userID char primary key, 
+orderID char,
 email char,
 matchID int,
 seat_num char,

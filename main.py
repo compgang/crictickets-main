@@ -146,6 +146,7 @@ def print_description():
         print(f"Stadium: {stadium}")
         print(f"Time: {time1}")
         print(f'''Description: \n
+        
 {desc}''')
         print(f"Price range: {price_range}")
         print("Book now!!")
@@ -193,3 +194,8 @@ if __name__ == "__main__":
         pass
 
     time.sleep(2)
+
+userid1 = ''.join(ran.choices(string.ascii_uppercase, k=4))
+userid2 = ''.join(ran.choices(string.digits, k=10))
+userid3 = str(userid1) + str(userid2)
+
