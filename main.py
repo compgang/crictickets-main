@@ -129,21 +129,22 @@ def print_description():
 
     # Use parameterized queries to avoid SQL injection
     cur.execute("SELECT * FROM matches WHERE (Team1 = ? AND Team2 = ?) OR (Team1 = ? AND Team2 = ?)",
-                (team1, team2, team2, team1))
+                (team1, team2, team2, team1)) # Need to be changed based on Khushi's variable names
 
     match_data = cur.fetchone()  # Use fetchone to retrieve a single match
-
-    if match_data:
+    i = 1
+    for row in match_data:
         match_id, team1, team2, location, date, stadium, desc, price_range, time1 = match_data
-
+        print(i,":")
         print(f"Match: {team1} vs {team2}")
         print(f"Location: {location}")
         print(f"Stadium: {stadium}")
         print(f"Time: {time1}")
-        print(f'''Description: 
+        print(f'''Description: \n
 {desc}''')
         print(f"Price range: {price_range}")
         print("Book now!!")
+        i += 1
     else:
         print("No matching records found for the given teams.")
 
