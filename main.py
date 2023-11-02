@@ -8,7 +8,7 @@ import re
 import hashlib
 import os
 import binascii
-import pwinput  # Change
+import pwinput  
 
 # Initialize the database connection
 con = sql.connect("data.db")
