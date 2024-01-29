@@ -1,7 +1,13 @@
-# pythonproject
-for da school project :D
-This project is based on a fictional website by the name of CricTickets, which is used to book  IPL tickets online. 
-This is a computer science investigatory paper.
+# CricTickets
+Welcome to the GitHub repository for CricTickets! This project represents our endeavor to create a modern IPL ticket booking platform using Python. Here, you'll find our codebase, documentation, and resources.
+
+While we've made significant progress, it's essential to note that CricTickets is still a work in progress. As such, you may encounter bugs or areas for improvement as you explore the repository.
+
+We invite you to delve into our project, provide feedback, and contribute your ideas. Together, let's continue refining and enhancing CricTickets to provide cricket enthusiasts with an exceptional ticket booking experience.
+
+Thank you for your interest and support!
+
+# Requirements
 
 # License
 MIT License
