@@ -9,6 +9,21 @@ Thank you for your interest and support!
 
 # Requirements
 
+**Operating system**: Windows 10 / macOS 10.14 / Linux (with ActivePython)
+
+**Processor (CPU)**: Intel Core i3 / AMD Ryzen 3 or equivalent alternatives
+
+**Memory (RAM)**: At least 4 GB RAM 
+
+**Storage**: 128 GB Solid State Drive (SSD) or 500GB Hard Disc Drive (HDD)
+
+**Python Version**: Best on v3.12.1
+
+**Network / Internet Connection**: Not mandatory
+
+**Ports**: USB 3.0 ports
+
+
 # License
 BSD 3-Clause License
 
