@@ -12,7 +12,7 @@ Thank you for your interest and support!
 # License
 BSD 3-Clause License
 
-Copyright (c) 2024, Ashvath V.V
+Copyright (c) 2024, Arnav Jain, Khushi K.P, Shreya Char, Ashvath V.V
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
